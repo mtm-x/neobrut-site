@@ -13,15 +13,15 @@ export default function Home() {
       
       <div className="mt-8 text-base sm:text-lg space-y-4">
         <p>
-          Hi, I'm Thamaraimanalan M, an embedded systems and low-level programming enthusiast passionate about the Linux kernel and FOSS.
+          Hi, I&apos;m Thamaraimanalan M, an embedded systems and low-level programming enthusiast passionate about the Linux kernel and FOSS.
         </p>
 
         <p>
-          I build hobby projects around embedded systems, cross-platform application development with Qt framework, and I'm currently diving deep into Linux kernel internals and device driver development.
+          I build hobby projects around embedded systems, cross-platform application development with Qt framework, and I&apos;m currently diving deep into Linux kernel internals and device driver development.
         </p>
 
         <p>
-          Whether I'm writing kernel modules, debugging device drivers, optimizing embedded firmware, or building IoT solutions, I'm constantly exploring new technologies and pushing the boundaries of what's possible with code and hardware.
+          Whether I&apos;m writing kernel modules, debugging device drivers, optimizing embedded firmware, or building IoT solutions, I&apos;m constantly exploring new technologies and pushing the boundaries of what&apos;s possible with code and hardware.
         </p>
       </div>
 

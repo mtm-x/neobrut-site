@@ -21,8 +21,8 @@ export default function About() {
 
         <div className="text-base sm:text-lg flex-1 space-y-4">
           <p>
-            I'm a final year Electronics and Communication student at Government College of Technology, Coimbatore, 
-            with a deep passion for Linux and low-level engineering. I'm currently enrolled in an Embedded Systems 
+            I&apos;m a final year Electronics and Communication student at Government College of Technology, Coimbatore, 
+            with a deep passion for Linux and low-level engineering. I&apos;m currently enrolled in an Embedded Systems 
             and Linux kernel course by Pyjamabrah, taught by Google Software Engineers.
           </p>
           
@@ -34,7 +34,7 @@ export default function About() {
           
           <p>
             My GitHub is full of personal projects exploring embedded systems, Qt framework, and Linux internals. 
-            I'm driven by curiosity and a genuine love for open source - constantly learning and building things 
+            I&apos;m driven by curiosity and a genuine love for open source - constantly learning and building things 
             that interest me.
           </p>
         </div>

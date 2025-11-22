@@ -12,7 +12,6 @@ import {
   SiGnubash,
   SiDocker,
   SiArduino,
-  SiTensorflow,
   SiOpencv,
 } from '@icons-pack/react-simple-icons'
 
@@ -44,7 +43,6 @@ const SKILLS: { field: string; skills: { skill: string; icon: IconType }[] }[] =
         { skill: 'GitHub', icon: SiGithub },
         { skill: 'Docker', icon: SiDocker },
         { skill: 'OpenCV', icon: SiOpencv },
-        { skill: 'TensorFlow', icon: SiTensorflow },
       ],
     },
   ]

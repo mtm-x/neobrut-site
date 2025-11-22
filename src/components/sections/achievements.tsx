@@ -1,42 +1,103 @@
+'use client'
+
 import ACHIEVEMENTS from '@/data/achievements'
+import { motion } from 'framer-motion'
 
 export default function Achievements() {
   return (
     <div className="mb-16">
-      <h2 className="mb-6 text-xl font-heading sm:text-2xl">Achievements</h2>
+      <motion.h2 
+        className="mb-6 text-xl font-heading sm:text-2xl"
+        initial={{ opacity: 0, x: -20 }}
+        whileInView={{ opacity: 1, x: 0 }}
+        viewport={{ once: true }}
+        transition={{ duration: 0.5 }}
+      >
+        Achievements
+      </motion.h2>
 
-      <div className="flex flex-col gap-4">
+      <motion.div 
+        className="flex flex-col gap-4"
+        initial="hidden"
+        whileInView="visible"
+        viewport={{ once: true }}
+        variants={{
+          visible: {
+            transition: {
+              staggerChildren: 0.15,
+            },
+          },
+        }}
+      >
         {ACHIEVEMENTS.map((achievement, id) => {
           return (
-            <div
-              className="border-border shadow-shadow rounded-base bg-main border-2 p-4 sm:p-5 group hover-lift relative overflow-hidden"
+            <motion.div
+              className="border-border shadow-shadow rounded-base bg-main border-2 p-4 sm:p-5 group relative overflow-hidden"
               key={id}
+              variants={{
+                hidden: { opacity: 0, y: 30 },
+                visible: { 
+                  opacity: 1, 
+                  y: 0,
+                  transition: { duration: 0.5 }
+                },
+              }}
+              whileHover={{ 
+                y: -8,
+                boxShadow: "12px 12px 0px 0px var(--border)"
+              }}
+              transition={{ duration: 0.3 }}
             >
-              <div className="absolute top-0 right-0 w-32 h-32 bg-gradient-to-bl from-foreground/5 to-transparent rounded-bl-full transform translate-x-16 -translate-y-16 group-hover:translate-x-8 group-hover:-translate-y-8 transition-transform duration-500"></div>
+              <motion.div 
+                className="absolute top-0 right-0 w-32 h-32 bg-gradient-to-bl from-foreground/5 to-transparent rounded-bl-full"
+                initial={{ x: 128, y: -128 }}
+                whileHover={{ x: 64, y: -64 }}
+                transition={{ duration: 0.5 }}
+              />
               
-              <h3 className="text-lg font-heading sm:text-xl relative z-10 group-hover:text-foreground transition-colors duration-300">
+              <motion.h3 
+                className="text-lg font-heading sm:text-xl relative z-10"
+                whileHover={{ color: "var(--foreground)" }}
+                transition={{ duration: 0.3 }}
+              >
                 {achievement.title}
-              </h3>
+              </motion.h3>
 
-              <p className="text-text mt-2 text-sm sm:text-base relative z-10 group-hover:text-foreground transition-colors duration-300">
+              <motion.p 
+                className="text-text mt-2 text-sm sm:text-base relative z-10"
+                whileHover={{ color: "var(--foreground)" }}
+                transition={{ duration: 0.3 }}
+              >
                 {achievement.description}
-              </p>
+              </motion.p>
 
               {achievement.link && (
-                <a
-                  className="border-border bg-secondary-background text-foreground shadow-shadow rounded-base font-base hover:translate-x-boxShadowX hover:translate-y-boxShadowY mt-4 inline-block cursor-pointer border-2 px-4 py-2 text-center text-sm transition-all hover:shadow-none sm:text-base relative z-10 overflow-hidden group/button"
+                <motion.a
+                  className="border-border bg-secondary-background text-foreground shadow-shadow rounded-base font-base mt-4 inline-block cursor-pointer border-2 px-4 py-2 text-center text-sm sm:text-base relative z-10 overflow-hidden group/button"
                   href={achievement.link}
                   target="_blank"
                   rel="noopener noreferrer"
+                  whileHover={{ 
+                    x: 4,
+                    y: 4,
+                    boxShadow: "none"
+                  }}
+                  whileTap={{ scale: 0.98 }}
+                  transition={{ duration: 0.2 }}
                 >
                   <span className="relative z-10">View Certificate</span>
-                  <span className="absolute inset-0 bg-main opacity-0 group-hover/button:opacity-100 transition-opacity duration-300"></span>
-                </a>
+                  <motion.span 
+                    className="absolute inset-0 bg-main"
+                    initial={{ opacity: 0 }}
+                    whileHover={{ opacity: 1 }}
+                    transition={{ duration: 0.3 }}
+                  />
+                </motion.a>
               )}
-            </div>
+            </motion.div>
           )
         })}
-      </div>
+      </motion.div>
     </div>
   )
 }

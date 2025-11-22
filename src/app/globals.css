@@ -4,28 +4,40 @@
 @custom-variant dark (&:is(.dark *));
 
 :root {
-  --background: oklch(95.38% 0.0357 72.89);
+  --background: oklch(98% 0.02 90);
   --secondary-background: oklch(100% 0 0);
   --foreground: oklch(0% 0 0);
   --main-foreground: oklch(0% 0 0);
-  --main: oklch(72.27% 0.1894 50.19);
+  --main: oklch(75% 0.22 45);
   --border: oklch(0% 0 0);
   --ring: oklch(0% 0 0);
   --overlay: oklch(0% 0 0 / 0.8);
   --shadow: 4px 4px 0px 0px var(--border);
   --shadow-lg: 8px 8px 0px 0px var(--border);
+  --gradient-1: oklch(75% 0.2 50);
+  --gradient-2: oklch(70% 0.19 60);
+  --gradient-3: oklch(65% 0.18 70);
+  --accent-pink: oklch(75% 0.22 350);
+  --accent-blue: oklch(70% 0.20 240);
+  --accent-yellow: oklch(85% 0.18 85);
 }
 
 .dark {
-  --background: oklch(26.86% 0.0327 60.06);
-  --secondary-background: oklch(23.93% 0 0);
-  --foreground: oklch(92.49% 0 0);
+  --background: oklch(20% 0.02 60);
+  --secondary-background: oklch(15% 0 0);
+  --foreground: oklch(98% 0 0);
   --main-foreground: oklch(0% 0 0);
-  --main: oklch(67.56% 0.1796 49.61);
+  --main: oklch(70% 0.20 45);
   --border: oklch(0% 0 0);
   --ring: oklch(100% 0 0);
   --shadow: 4px 4px 0px 0px var(--border);
   --shadow-lg: 8px 8px 0px 0px var(--border);
+  --gradient-1: oklch(65% 0.18 45);
+  --gradient-2: oklch(60% 0.17 55);
+  --gradient-3: oklch(55% 0.16 65);
+  --accent-pink: oklch(70% 0.20 350);
+  --accent-blue: oklch(65% 0.18 240);
+  --accent-yellow: oklch(80% 0.16 85);
 }
 
 @theme inline {
@@ -50,6 +62,79 @@
 
 body {
   background-color: var(--background);
+  position: relative;
+  overflow-x: hidden;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+/* Animated background pattern - simpler on mobile */
+body::before {
+  content: '';
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 200%;
+  height: 200%;
+  background-image: 
+    repeating-linear-gradient(
+      45deg,
+      transparent,
+      transparent 50px,
+      rgba(0, 0, 0, 0.015) 50px,
+      rgba(0, 0, 0, 0.015) 100px
+    );
+  animation: backgroundMove 80s linear infinite;
+  pointer-events: none;
+  z-index: -1;
+  opacity: 0.3;
+}
+
+@media (min-width: 640px) {
+  body::before {
+    background-image: 
+      repeating-linear-gradient(
+        45deg,
+        transparent,
+        transparent 35px,
+        rgba(0, 0, 0, 0.02) 35px,
+        rgba(0, 0, 0, 0.02) 70px
+      );
+    animation: backgroundMove 60s linear infinite;
+  }
+}
+
+.dark body::before {
+  background-image: 
+    repeating-linear-gradient(
+      45deg,
+      transparent,
+      transparent 50px,
+      rgba(255, 255, 255, 0.015) 50px,
+      rgba(255, 255, 255, 0.015) 100px
+    );
+}
+
+@media (min-width: 640px) {
+  .dark body::before {
+    background-image: 
+      repeating-linear-gradient(
+        45deg,
+        transparent,
+        transparent 35px,
+        rgba(255, 255, 255, 0.02) 35px,
+        rgba(255, 255, 255, 0.02) 70px
+      );
+  }
+}
+
+@keyframes backgroundMove {
+  0% {
+    transform: translate(0, 0);
+  }
+  100% {
+    transform: translate(-50%, -50%);
+  }
 }
 
 body {
@@ -78,6 +163,11 @@ html.dark body::-webkit-scrollbar-thumb {
 
 body::-webkit-scrollbar-thumb {
   background: var(--sb-thumb-color);
+  transition: background 0.3s ease;
+}
+
+body::-webkit-scrollbar-thumb:hover {
+  background: var(--main);
 }
 
 @supports not selector(::-webkit-scrollbar) {
@@ -418,5 +508,265 @@ body::-webkit-scrollbar-thumb {
 
 .glitch-hover:hover {
   animation: glitch 0.3s;
+}
+
+/* Morphing Shadow Animation */
+@keyframes morphShadow {
+  0%, 100% {
+    box-shadow: 4px 4px 0px 0px var(--border);
+  }
+  50% {
+    box-shadow: 8px 8px 0px 0px var(--border);
+  }
+}
+
+.animate-morph-shadow {
+  animation: morphShadow 2s ease-in-out infinite;
+}
+
+/* Pulse Glow Animation */
+@keyframes pulseGlow {
+  0%, 100% {
+    filter: drop-shadow(0 0 0px var(--main));
+  }
+  50% {
+    filter: drop-shadow(0 0 12px var(--main));
+  }
+}
+
+.animate-pulse-glow {
+  animation: pulseGlow 2s ease-in-out infinite;
+}
+
+/* Text Gradient Animation */
+@keyframes textGradient {
+  0%, 100% {
+    background-position: 0% 50%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
+}
+
+.animate-text-gradient {
+  background: linear-gradient(
+    90deg,
+    var(--foreground),
+    var(--main),
+    var(--foreground)
+  );
+  background-size: 200% auto;
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+  animation: textGradient 3s ease infinite;
+}
+
+/* Bouncy Scale Animation */
+@keyframes bouncyScale {
+  0%, 100% {
+    transform: scale(1);
+  }
+  50% {
+    transform: scale(1.05);
+  }
+}
+
+.animate-bouncy-scale {
+  animation: bouncyScale 1s ease-in-out infinite;
+}
+
+/* Rotate Glow */
+@keyframes rotateGlow {
+  0% {
+    transform: rotate(0deg);
+    filter: hue-rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+    filter: hue-rotate(360deg);
+  }
+}
+
+.animate-rotate-glow {
+  animation: rotateGlow 10s linear infinite;
+}
+
+/* Smooth Page Transition */
+@keyframes pageTransition {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.page-transition {
+  animation: pageTransition 0.5s ease-out;
+}
+
+/* Border Drawing Animation */
+@keyframes drawBorder {
+  0% {
+    stroke-dashoffset: 1000;
+  }
+  100% {
+    stroke-dashoffset: 0;
+  }
+}
+
+.animate-draw-border {
+  stroke-dasharray: 1000;
+  stroke-dashoffset: 1000;
+  animation: drawBorder 2s ease-out forwards;
+}
+
+/* Neon Pulse */
+@keyframes neonPulse {
+  0%, 100% {
+    text-shadow: 
+      0 0 5px var(--main),
+      0 0 10px var(--main),
+      0 0 15px var(--main);
+  }
+  50% {
+    text-shadow: 
+      0 0 10px var(--main),
+      0 0 20px var(--main),
+      0 0 30px var(--main);
+  }
+}
+
+.animate-neon-pulse {
+  animation: neonPulse 2s ease-in-out infinite;
+}
+
+/* Enhanced Hover Effects */
+.hover-pop {
+  transition: all 0.3s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+}
+
+.hover-pop:hover {
+  transform: scale(1.1) rotate(-2deg);
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+}
+
+.hover-glow-intense {
+  position: relative;
+  transition: all 0.3s ease;
+}
+
+.hover-glow-intense::after {
+  content: '';
+  position: absolute;
+  inset: -4px;
+  background: var(--main);
+  filter: blur(20px);
+  opacity: 0;
+  transition: opacity 0.3s ease;
+  z-index: -1;
+  border-radius: inherit;
+}
+
+.hover-glow-intense:hover::after {
+  opacity: 0.6;
+}
+
+/* Slide from edges */
+@keyframes slideFromLeft {
+  from {
+    transform: translateX(-100%);
+    opacity: 0;
+  }
+  to {
+    transform: translateX(0);
+    opacity: 1;
+  }
+}
+
+@keyframes slideFromRight {
+  from {
+    transform: translateX(100%);
+    opacity: 0;
+  }
+  to {
+    transform: translateX(0);
+    opacity: 1;
+  }
+}
+
+.animate-slide-from-left {
+  animation: slideFromLeft 0.6s ease-out;
+}
+
+.animate-slide-from-right {
+  animation: slideFromRight 0.6s ease-out;
+}
+
+/* 3D Flip Effect */
+@keyframes flip3D {
+  from {
+    transform: perspective(1000px) rotateY(90deg);
+    opacity: 0;
+  }
+  to {
+    transform: perspective(1000px) rotateY(0deg);
+    opacity: 1;
+  }
+}
+
+.animate-flip-3d {
+  animation: flip3D 0.8s ease-out;
+}
+
+/* Breathing Animation */
+@keyframes breathe {
+  0%, 100% {
+    transform: scale(1);
+    opacity: 1;
+  }
+  50% {
+    transform: scale(1.03);
+    opacity: 0.9;
+  }
+}
+
+.animate-breathe {
+  animation: breathe 3s ease-in-out infinite;
+}
+
+/* Mobile optimizations */
+@media (max-width: 640px) {
+  /* Larger touch targets */
+  button, a {
+    min-height: 44px;
+    min-width: 44px;
+  }
+  
+  /* Prevent text size adjustment on mobile */
+  html {
+    -webkit-text-size-adjust: 100%;
+    text-size-adjust: 100%;
+  }
+  
+  /* Reduce animation intensity on mobile for performance */
+  * {
+    animation-duration: 0.6s !important;
+  }
+}
+
+/* Smooth scrolling for all */
+html {
+  scroll-behavior: smooth;
+}
+
+/* Better focus states for accessibility */
+*:focus-visible {
+  outline: 3px solid var(--main);
+  outline-offset: 2px;
+  border-radius: 4px;
 }
 

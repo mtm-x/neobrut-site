@@ -5,7 +5,6 @@ import FadeIn from '@/components/animated/fade-in'
 import StaggerContainer from '@/components/animated/stagger-container'
 import StaggerItem from '@/components/animated/stagger-item'
 import MarqueeText from '@/components/marquee-text'
-import StatsCounter from '@/components/stats-counter'
 import BadgeCollection from '@/components/badge-collection'
 import TypingEffect from '@/components/typing-effect'
 import { motion } from 'framer-motion'
@@ -121,10 +120,6 @@ export default function Home() {
 
       <FadeIn delay={1} direction="up">
         <MarqueeText text="EMBEDDED SYSTEMS • LINUX KERNEL • DEVICE DRIVERS • IoT SOLUTIONS" />
-      </FadeIn>
-
-      <FadeIn delay={1.2} direction="up">
-        <StatsCounter />
       </FadeIn>
 
       <BadgeCollection />

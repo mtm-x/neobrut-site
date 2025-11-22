@@ -608,6 +608,27 @@ body::-webkit-scrollbar-thumb:hover {
   animation: pageTransition 0.5s ease-out;
 }
 
+/* Prevent layout shift during page transitions */
+html {
+  overflow-y: scroll;
+  scroll-behavior: smooth;
+}
+
+body {
+  overflow-x: hidden;
+  width: 100%;
+}
+
+/* Stabilize mobile transitions */
+@media (max-width: 640px) {
+  * {
+    -webkit-backface-visibility: hidden;
+    backface-visibility: hidden;
+    -webkit-perspective: 1000;
+    perspective: 1000;
+  }
+}
+
 /* Border Drawing Animation */
 @keyframes drawBorder {
   0% {

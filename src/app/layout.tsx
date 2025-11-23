@@ -32,7 +32,7 @@ export default function RootLayout({
             <FloatingCards />
             <ScrollProgress />
             <Nav />
-            <div className="text-foreground mx-auto w-[750px] max-w-full px-4 sm:px-5 pt-24 sm:pt-28 pb-8 sm:pb-10 relative z-10 min-h-screen">
+            <div className="text-foreground mx-auto w-[750px] max-w-full px-4 sm:px-5 pt-24 sm:pt-28 pb-8 sm:pb-10 relative z-10">
               {children}
             </div>
             <BackToTop />

@@ -4,7 +4,7 @@ import { motion } from 'framer-motion'
 
 export default function DecorativeShapes() {
   return (
-    <div className="fixed inset-0 pointer-events-none overflow-hidden z-0">
+    <div className="fixed inset-0 pointer-events-none overflow-hidden z-0 h-screen">
       {/* Top Left Corner Shape - hidden on small screens */}
       <motion.div
         className="absolute top-20 left-10 w-12 h-12 sm:w-20 sm:h-20 bg-main border-2 sm:border-4 border-border rounded-full hidden sm:block"

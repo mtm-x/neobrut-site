@@ -15,6 +15,11 @@ const montserrat = Montserrat({ subsets: ['latin'], weight: ['400', '500', '600'
 export const metadata: Metadata = {
   title: 'Thamaraimanalan M - Portfolio',
   description: 'Embedded Systems & IoT Enthusiast | Python | C/C++ | ROS2 | Qt Framework',
+  icons: {
+    icon: '/icon.svg',
+    shortcut: '/icon.svg',
+    apple: '/icon.svg',
+  },
 }
 
 export default function RootLayout({

@@ -1,12 +1,9 @@
-'use client'
-
 import {
   IconType,
   SiGithub,
   SiGmail,
   SiLinkedin,
 } from '@icons-pack/react-simple-icons'
-import { motion } from 'framer-motion'
 
 export default function Links() {
   const links: { icon: IconType; href: string; label: string }[] = [
@@ -28,64 +25,20 @@ export default function Links() {
   ]
 
   return (
-    <motion.div 
-      className="mr-auto mt-20 flex w-full flex-wrap items-center gap-10"
-      initial="hidden"
-      animate="visible"
-      variants={{
-        visible: {
-          transition: {
-            staggerChildren: 0.15,
-          },
-        },
-      }}
-    >
+    <div className="mr-auto mt-10 sm:mt-12 flex w-full flex-wrap items-center gap-6 sm:gap-8">
       {links.map((link, id) => {
         return (
-          <motion.a 
+          <a 
             target="_blank" 
             key={id} 
             href={link.href}
-            className="group relative"
+            className="hover:text-main transition-colors p-2 -m-2"
             aria-label={link.label}
-            variants={{
-              hidden: { opacity: 0, scale: 0, rotate: -180 },
-              visible: { 
-                opacity: 1, 
-                scale: 1, 
-                rotate: 0,
-                transition: { 
-                  type: "spring",
-                  stiffness: 260,
-                  damping: 20
-                }
-              },
-            }}
-            whileHover={{ 
-              scale: 1.2,
-              y: -8,
-              rotate: [0, -10, 10, -10, 0],
-              transition: {
-                scale: { duration: 0.2 },
-                y: { duration: 0.2 },
-                rotate: { duration: 0.5 }
-              }
-            }}
-            whileTap={{ scale: 0.9 }}
           >
-            <motion.div 
-              className="absolute inset-0 bg-main rounded-full blur-md scale-150"
-              initial={{ opacity: 0 }}
-              whileHover={{ opacity: 0.6 }}
-              transition={{ duration: 0.3 }}
-            />
-            <link.icon 
-              title={link.label} 
-              className="relative z-10" 
-            />
-          </motion.a>
+            <link.icon title={link.label} className="w-6 h-6 sm:w-7 sm:h-7" />
+          </a>
         )
       })}
-    </motion.div>
+    </div>
   )
 }
